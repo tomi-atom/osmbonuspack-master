@@ -1,0 +1,47 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 26
+    buildToolsVersion '26.0.3'
+
+    defaultConfig {
+        applicationId "com.example.osmbonuspacktuto"
+        minSdkVersion 16
+        targetSdkVersion 26 //22 = the limit to avoid implementing new permissions granting.
+        versionCode 1
+        versionName "1.0"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+repositories {
+    mavenCentral()
+    flatDir {
+        dirs 'libs'
+    }
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+
+    //including when part of the same project
+    //compile project(":OSMBonusPack")
+    compile "com.android.support:support-v4:26.1.0"
+
+    //including using JitPack:
+    compile 'com.github.MKergall:osmbonuspack:6.6.0'
+
+    // including as local lib
+    /*
+    compile(name: 'osmbonuspack_v6.6.0', ext: 'aar')
+    compile 'org.osmdroid:osmdroid-android:6.1.0'
+    compile 'org.apache.commons:commons-lang3:3.3.4'
+    compile 'com.google.code.gson:gson:2.8.5'
+    compile 'com.squareup.okhttp3:okhttp:3.10.0'
+    */
+}
